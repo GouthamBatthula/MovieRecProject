@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MovieRecProject</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            transition: background 0.1s ease; /* Smooth transition for background change */
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em;
+            text-align: center;
+            margin-top: 20%;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .input-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .input-container input {
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            width: 60%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .input-container button {
+            background: linear-gradient(45deg, #ff007f, #8a2be2);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .input-container button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+            background: linear-gradient(45deg, #ff00b3, #6a0dad);
+        }
+
+        .recommendations {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
+            100% { text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to MovieRecProject</h1>
+    <p>Discover your next favorite movie with our advanced recommendation system.</p>
+
+    <div class="input-container">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="movie_title" placeholder="Enter a movie title" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+
+    <div class="recommendations">
+        {% if recommendations %}
+            <h2>Recommended Movies:</h2>
+            <ul>
+                {% if recommendations == "Movie not found in dataset." %}
+                    <li>{{ recommendations }}</li>
+                {% else %}
+                    {% for movie in recommendations %}
+                        <li>{{ movie }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% else %}
+            <p>No recommendations yet. Enter a movie title to get started.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        document.body.addEventListener('mousemove', function(e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            document.body.style.background = `linear-gradient(${x * 360}deg, #ff007f, #8a2be2, #4b0082)`;
+        });
+    </script>
+
+</body>
+</html>
