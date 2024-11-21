@@ -10,7 +10,7 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            color: #fff;
+            color: #ffffff;
             transition: background 0.1s ease; /* Smooth transition for background change */
         }
 
@@ -38,10 +38,12 @@
             padding: 10px;
             font-size: 1.2em;
             border: none;
-            border-radius: 5px;
+            border-radius: 15px;
             width: 60%;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
+
+
         }
 
         .input-container button {
@@ -51,7 +53,7 @@
             padding: 10px 20px;
             font-size: 1.2em;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 15px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
             transition: all 0.3s ease;
         }
@@ -77,6 +79,33 @@
             margin-bottom: 10px;
         }
 
+        .example-section {
+            text-align: center;
+            margin-top: 40px;
+            background-color: rgba(0, 0, 0, 0.329); /* Dark background for the box */
+            border-radius: 30px;
+            padding: 20px;
+            width: 80%;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+
+        }
+
+        .example-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .example-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .example-section li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
         @keyframes glow {
             0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
             100% { text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff; }
@@ -96,6 +125,7 @@
         </form>
     </div>
 
+
     <div class="recommendations">
         {% if recommendations %}
             <h2>Recommended Movies:</h2>
@@ -113,11 +143,24 @@
         {% endif %}
     </div>
 
+    <!-- Example Section -->
+    <div class="example-section">
+        <h2>Example Movies</h2>
+        <ul>
+            <li>Toy Story (1995)</li>
+            <li>Jumanji (1995)</li>
+            <li>Heat (1995)</li>
+            <li>Sabrina (1995)</li>
+            <li>Sudden Death (1995)</li>
+            <li>GoldenEye (1995)</li>
+        </ul>
+    </div>
+
     <script>
         document.body.addEventListener('mousemove', function(e) {
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
-            document.body.style.background = `linear-gradient(${x * 360}deg, #ff007f, #8a2be2, #4b0082)`;
+            document.body.style.background = `linear-gradient(${(1 - x) * 360}deg, #ff007f, #8a2be2, #4b0082)`;
         });
     </script>
 
